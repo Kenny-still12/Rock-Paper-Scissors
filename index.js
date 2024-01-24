@@ -24,28 +24,54 @@ function play(playerSelection, computerSelection) {
     } else if (result == 'player') {
         return `You won! your ${playerSelection} beats ${computerSelection}`;
     } else {
-        return `You lost! computer's ${playerSelection} beats your ${computerSelection}`;
+        return `You lost! computer's ${computerSelection} beats your ${playerSelection}`;
     }
 }
 
-function getplayerChoice(){
-    let checkInput = false;
-    while(checkInput == false){
-        const choice = prompt("Rock Paper Scissors!");
-        if (choice == null){
-            continue;
-        }
-        const choiceLowered = choice.toLowerCase();
-        if (choices.includes(choiceLowered)){
-            return choiceLowered;
-        }
-    } 
-}
 
 function game (){
     let scorePlayer = 0;
     let scoreComp = 0;
-    for (let i = 0; i < 5; i++){    
+
+    let buttons = document.querySelectorAll('button');
+    const playerResult = document.querySelector('.result-player');
+    const compResult = document.querySelector('.result-computer');
+    const win = document.querySelector('.winner');
+
+    buttons.forEach( (button) =>  
+        button.addEventListener('click', () =>{
+            if(button.id){
+                let computerSelection = getComputerChoice();
+                const result = play(button.id, computerSelection);
+                console.log(result);
+
+                if (checkWin(button.id,computerSelection) == 'player'){
+                    scorePlayer++;
+                    playerResult.textContent = `Player:  ${scorePlayer}`;
+                } else if (checkWin(button.id,computerSelection) =='computer') {
+                    scoreComp++;
+                    compResult.textContent = `Computer: ${scoreComp}`;
+                }
+                if (scorePlayer == 5 && scoreComp < 5){
+                    win.textContent = 'The Player won!';
+                } 
+                if (scoreComp == 5 && scorePlayer < 5) {
+                    win.textContent = 'You lose Try Again';
+                }
+            }
+        })
+        );
+  
+    }
+game();
+
+// DOM manipulation 
+
+
+
+
+/*
+for (let i = 0; i < 5; i++){    
         const computerSelection = getComputerChoice();
         const playerSelection = getplayerChoice();
         console.log(play(playerSelection, computerSelection));
@@ -55,13 +81,12 @@ function game (){
             scoreComp++;
         }
     }
-    if (scorePlayer > scoreComp){
-        console.log(`you Won with the score of ${scorePlayer}!`);
-    } else if (scorePlayer < scoreComp){
-        console.log(`you lost with the score of ${scorePlayer}`);
-    } else {
-        console.log('you tied with the computer! bettter luck next time');
-    }
-}
 
-game();
+    if (scorePlayer > scoreComp){
+            console.log(`you Won with the score of ${scorePlayer}!`);
+        } else if (scorePlayer < scoreComp){
+            console.log(`you lost with the score of ${scorePlayer}`);
+        } else {
+            console.log('you tied with the computer! bettter luck next time');
+        }
+*/
