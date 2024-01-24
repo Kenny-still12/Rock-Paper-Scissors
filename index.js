@@ -64,29 +64,3 @@ function game (){
   
     }
 game();
-
-// DOM manipulation 
-
-
-
-
-/*
-for (let i = 0; i < 5; i++){    
-        const computerSelection = getComputerChoice();
-        const playerSelection = getplayerChoice();
-        console.log(play(playerSelection, computerSelection));
-        if(checkWin(playerSelection, computerSelection) == 'player'){
-            scorePlayer++;
-        } else if (checkWin(playerSelection, computerSelection) == 'computer'){
-            scoreComp++;
-        }
-    }
-
-    if (scorePlayer > scoreComp){
-            console.log(`you Won with the score of ${scorePlayer}!`);
-        } else if (scorePlayer < scoreComp){
-            console.log(`you lost with the score of ${scorePlayer}`);
-        } else {
-            console.log('you tied with the computer! bettter luck next time');
-        }
-*/
